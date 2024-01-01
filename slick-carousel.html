@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body {
+        background-color: darkgrey;
+    }
+    .gallery {
+        width: 900px;
+        background-color: aliceblue;
+        display: flex;
+        justify-content: center;
+        overflow-x: scroll;
+    }
+    .gallery div{
+        width: 100%;
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        grid-gap: 30px;
+        padding: 20px;
+        flex: none;
+        filter: grayscale(100%);
+    }
+    .gallery div img{
+        width: 100%;
+        filter: grayscale(100%);
+        transform: 0.5s;
+    }
+    .gallery div img:hover{
+        width: 100%;
+        filter: grayscale(0%);
+        transform: 0.5s;
+    }
+    .gallery div:hover{
+        width: 100%;
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        grid-gap: 30px;
+        padding: 20px;
+        flex: none;
+        filter: grayscale(0);
+        /* transform: scale(1.1); */
+    }
+    .gallery div img {
+        width: 100%;
+    }
+    .gallery::-webkit-scrollbar {
+        display: none;
+    }
+    .gallery-wrap .scrl{
+        height: 50px;
+        width: 50px;
+    }
+    .gallery-wrap{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 10% auto;
+    }
+
+    #nextBtn, #backBtn{
+        cursor: pointer;
+        width: 50px;
+        margin: 20px;
+        padding: 10px;
+        background-color: black;
+    }
+    
+</style>
+<body>
+
+
+    
+    <div class="gallery-wrap">
+        <img class="scrl" src="img/prev.png" id="backBtn">
+        
+        <div class="gallery" id="gallery">
+            <div>
+                <span><img src="img/3.jpg"></span>
+                <span><img src="img/4.jpg"></span>
+                <span><img src="img/5.jpg"></span>
+                <span><img src="img/6.jpg"></span>
+            </div>
+            <div>
+                <span><img src="img/3.jpg"></span>
+                <span><img src="img/4.jpg"></span>
+                <span><img src="img/5.jpg"></span>
+                <span><img src="img/6.jpg"></span>
+            </div>
+            <div>
+                <span><img src="img/3.jpg"></span>
+                <span><img src="img/4.jpg"></span>
+                <span><img src="img/5.jpg"></span>
+                <span><img src="img/6.jpg"></span>
+            </div>
+        </div>
+        <img class="scrl" src="img/next.jpg" id="nextBtn">
+    </div>
+    
+
+    <script>
+        let scrollContainer = document.querySelector(".gallery");
+        let backBtn = document.getElementById("backBtn");
+        let nextBtn = document.getElementById("nextBtn");
+
+        scrollContainer.addEventListener("wheel", (evt)=>{
+            evt.preventDefault();
+            scrollContainer.style.scrollBehavior = "auto";
+            scrollContainer.scrollLeft += evt.deltaY;
+        });
+
+        nextBtn.addEventListener("click", ()=>{
+            scrollContainer.style.scrollBehavior = "smooth";
+            scrollContainer.scrollLeft += 600;
+        })
+        
+        backBtn.addEventListener("click", ()=>{
+            scrollContainer.style.scrollBehavior = "smooth";
+            scrollContainer.scrollLeft -= 900;
+        })
+    </script>
+
+</body>
+</html>
